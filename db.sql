@@ -1,0 +1,1 @@
+create table todolist (id serial primary key, task text, finished bool default false)
