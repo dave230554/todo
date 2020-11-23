@@ -4,7 +4,11 @@ const App = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    setTodos(JSON.parse(localStorage.state));
+    if (localStorage.state) {
+      setTodos(JSON.parse(localStorage.state));
+    } else {
+      setTodos(JSON.parse([]));
+    }
   }, []);
   useEffect(() => {
     localStorage.setItem("state", JSON.stringify(todos));
@@ -51,6 +55,7 @@ const App = () => {
           id="basic-url"
           onKeyPress={(e) => {
             e.key === "Enter" &&
+              e.target.value &&
               setTodos([
                 ...todos,
                 {
